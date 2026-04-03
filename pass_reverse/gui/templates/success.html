@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인증 결과 확인</title>
+</head>
+<body>
+    <div class="result-box">
+        <h2>인증 정보 결과</h2>
+        <div class="result-item">
+            <span class="result-label">통신사:</span>
+            <span class="result-value">{{ isp }} ({{ isp_code }})</span>
+        </div>
+        <div class="result-item">
+            <span class="result-label">인증방식:</span>
+            <span class="result-value">{{ cert_method }}</span>
+        </div>
+        <div class="result-item">
+            <span class="result-label">이름:</span>
+            <span class="result-value">{{ user_name }}</span>
+        </div>
+        <div class="result-item">
+            <span class="result-label">휴대폰 번호:</span>
+            <span class="result-value">{{ mobile_no }}</span>
+        </div>
+        <div class="result-item">
+            <span class="result-label">생년월일:</span>
+            <span class="result-value">{{ birth_date }}</span>
+        </div>
+        <br>
+        <button onclick="location.href='/'" class="btn_pass show">처음으로</button>
+    </div>
+</body>
+</html>

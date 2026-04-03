@@ -1,0 +1,2 @@
+recursive-include pass_reverse/gui/templates *
+recursive-include pass_reverse/gui/static *

@@ -1,0 +1,1307 @@
+@charset "euc-kr";
+
+.font_bk {
+    color: #000;
+}
+
+.font_red {
+    color: #ff3a4a;
+}
+
+.btn_pass {
+    display: none;
+    width: 100%;
+    height: 60px;
+    border-radius: 12px;
+    font-size: 24px;
+    color: #fff;
+    background: #ff3a4a;
+    font-weight: 700;
+}
+
+.check_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.check_info span,
+.check_info button {
+    font-size: 18px;
+    color: #707070;
+}
+
+.check_info i {
+    margin-right: 8px;
+}
+
+.mark_q {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.mark_q::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/icon_mark1_on.png);
+    visibility: hidden;
+}
+
+.dot::before {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: #767676;
+    border-radius: 10px;
+    content: '';
+}
+
+.btn_check:hover .mark_q::before {
+    visibility: visible;
+}
+
+.btn_check.on i {
+    width: 20px;
+    height: 20px;
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/icon_mark1_on.png) no-repeat center;
+}
+
+.btn_check.on i img {
+    opacity: 0;
+}
+
+.time_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    padding: 0 20px;
+    background: #f8f8f8;
+    border-radius: 12px;
+}
+
+.time_box input {
+    height: 40px;
+    background: #f8f8f8;
+}
+
+.time_box .time_lt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.time_box .count {
+    color: #ff3a4a;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.time_box .count_txt {
+    color: #808080;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.time_box .clock {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/content/timer.svg) no-repeat center;
+}
+
+.time_box .btn_delay {
+    font-size: 18px;
+    color: #707070;
+}
+
+.time_box .btn_delay::after {
+    display: block;
+    content: '';
+    clear: both;
+    width: 100%;
+    height: 1px;
+    background: #707070;
+}
+
+.img_txt {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.img_txt h3 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.img_txt p {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #707070;
+    font-weight: 500;
+}
+
+
+.agree_arr {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/arr_rt.svg) no-repeat 0 1px;
+    float: right;
+}
+
+.checkbox {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-block;
+}
+
+.checkbox button {
+    font-size: 20px;
+}
+
+.checkbox label {
+    cursor: pointer;
+}
+
+.checkbox input+.check1 {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-image: url('https://nice.checkplus.co.kr/images/mobileCertV2/icon/check1.svg');
+    background-size: cover;
+}
+
+.checkbox input+label.check1.checked {
+    background-image: url('https://nice.checkplus.co.kr/images/mobileCertV2/icon/check1_on.svg');
+}
+
+.checkbox input+.check2 {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('https://nice.checkplus.co.kr/images/mobileCertV2/icon/check2.svg');
+    background-size: cover;
+}
+
+.checkbox input+label.check2.checked {
+    background-image: url('https://nice.checkplus.co.kr/images/mobileCertV2/icon/check2_on.svg');
+}
+
+.fx1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 공용 컨텐츠 */
+.sc_content h2 {
+    font-size: 32px;
+}
+
+.sc_content .btn_check i {
+    display: inline-block;
+}
+
+.sc_content .btn_check span {
+    display: inline-block;
+    color: #707070;
+    font-size: 18px;
+}
+
+/* 통신사선택 */
+.tel_content {
+    height: 600px;
+}
+
+.tel_content .btn_check {
+    margin-top: 20px;
+    float: right;
+}
+
+.tel_content .btn_check span {
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+.tel_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
+    margin-top: 30px;
+}
+
+.tel_item {
+    width: 31%;
+    height: 130px;
+    border: 1px solid #D4D4D4;
+    border-radius: 12px;
+    margin: 2% 2% 0 0;
+}
+
+.tel_item:nth-child(3) {
+    margin-right: 0
+}
+
+.tel_item.on {
+    border: 2px solid #FF3A4A;
+}
+
+.tel_item.save {
+    background: #f8f8f8;
+}
+
+.tel_item button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.tel_item.save button {
+    font-size: 20px;
+    color: #545454;
+}
+
+.tel_content .btn_check.on span,
+.btn_check:hover span {
+    color: #ff3a4a;
+}
+
+/* 인증방법 선택 */
+.cert_content .cert_list {
+    margin-top: 30px;
+}
+
+.cert_content .cert_item {
+    margin-top: 13px;
+    height: 96px;
+    border: 1px solid #d4d4d4;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.cert_content .cert_item:hover,
+.cert_content .cert_item.on {
+    border: 2px solid #ff3a4a;
+}
+
+.cert_content .cert_item button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 24px;
+    border-radius: 12px;
+}
+
+.cert_content .cert_item i {
+    width: 46px;
+    height: 46px;
+}
+
+.cert_content .cert_item .ico_pass {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/icon_pass.svg) no-repeat center;
+}
+
+.cert_content .cert_item .ico_qr {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/icon_qr.svg) no-repeat center;
+}
+
+.cert_content .cert_item .ico_sms {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/icon_sms.svg) no-repeat center;
+}
+
+.cert_content .item_tit {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cert_content .item_tit strong {
+    text-align: left;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.cert_content .item_tit span {
+    font-size: 18px;
+    color: #707070;
+}
+
+.cert_content .group_bottom {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 44px;
+}
+
+.cert_content .group_bottom.on {
+    display: flex;
+}
+
+/*.cert_content .checkbox {display: flex;align-items: center;} */
+.cert_content .checkbox input {
+    position: absolute;
+    top: 0;
+    height: 28px;
+}
+
+.cert_content .checkbox label {
+    display: inline-block;
+    padding-left: 36px;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.cert_content .checkbox input::before {
+    display: block;
+    content: '';
+    clear: both;
+    width: 28px;
+    height: 28px;
+    background-image: url('https://nice.checkplus.co.kr/images/mobileCertV2/icon/iconCheckBox.svg');
+    background-size: cover;
+    overflow: hidden;
+}
+
+.cert_content .checkbox input.checked::before {
+    background-image: url('https://nice.checkplus.co.kr/images/mobileCertV2/icon/check1_on.svg');
+}
+
+.cert_content .btn_agree .agree_arr {
+    display: inline-block;
+    position: inherit;
+}
+
+.cert_content .btn_pass {
+    margin-top: 20px;
+}
+
+.cert_content .btn_pass.show {
+    display: block;
+    margin-top: 20px;
+}
+
+/* 앱알람 */
+.appAlarm_content .inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.appAlarm_content .notice1 .img_txt {
+    margin-top: 0;
+}
+
+.appAlarm_content .img_notice {
+    display: block;
+    width: 100%;
+    height: 200px;
+}
+
+.appAlarm_content .notice1 .img_notice {
+    margin-top: 20px;
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/content/alarmMsg.svg) no-repeat center bottom;
+}
+
+.appAlarm_content .notice2 .img_notice {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/content/noticeMsg2.png) no-repeat center 0;
+}
+
+.appAlarm_content .notice3 .img_notice {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/content/noticeMsg1.png) no-repeat center 0;
+}
+
+.appAlarm_content .img_notice4 {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/content/noticeMsg2.svg) no-repeat center 0;
+}
+
+.appAlarm_content .check_info {
+    margin-top: 20px;
+}
+
+.appAlarm_content .mark_q {
+    margin-right: 0;
+}
+
+.appAlarm_content .btn_check:hover+.appAlarm_content .mark_q::before {
+    visibility: visible;
+}
+
+.appAlarm_content .btn_check span:last-child {
+    text-decoration: underline;
+}
+
+.appAlarm_content .btn_check:hover span {
+    color: #ff3a4a;
+}
+
+.appAlarm_content .notice_txt {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    color: #707070;
+}
+
+.appAlarm_content .notice_txt strong {
+    color: #000;
+}
+
+.appAlarm_content .btn_box {
+    margin-top: 80px;
+}
+
+.appAlarm_content .notice2 .btn_box .btn_pass:last-child {
+    margin-top: 14px;
+}
+
+.appAlarm_content .btn_box.type2 {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.appAlarm_content .btn_box.type2 .btn_pass {
+    width: 202px;
+    height: 60px;
+}
+
+.appAlarm_content .btn_box.type2 .btn_pass:last-child {
+    margin-top: 0;
+}
+
+.appAlarm_content .btn_pass {
+    display: block;
+}
+
+/* pass app qr 인증 */
+.qr_content h2 {
+    font-size: 26px;
+}
+
+.qr_content .btn_pass {
+    display: block;
+    margin-top: 30px;
+}
+
+.group_qr {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #D4D4D4;
+}
+
+.group_qr .qr_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.group_qr .time_box {
+    margin-top: 30px;
+}
+
+.group_qr .or {
+    font-size: 18px;
+    color: #707070;
+}
+
+.group_qr .qr_num {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.group_qr .qr_txt {
+    margin-top: 30px;
+    text-align: center;
+    color: #707070;
+    font-size: 18px;
+}
+
+.group_qr .qr_txt b {
+    font-weight: 700;
+    color: #000;
+}
+
+
+/* pass link 인증 */
+.link_content {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.link_content .link_num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    margin: 10px auto 0;
+    border-radius: 12px;
+    font-size: 32px;
+    font-weight: 700;
+    background: #f8f8f8;
+}
+
+.link_content .time_box {
+    margin-top: 100px;
+}
+
+.link_content .link_area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.link_content p {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #707070;
+}
+
+.link_content .exp {
+    font-size: 20px;
+    color: #707070;
+}
+
+.group_link {
+    display: flex;
+    justify-content: center;
+    gap: 56px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid #d4d4d4;
+}
+
+.group_link .link_box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.group_link .link_badge {
+    width: 24px;
+    height: 24px;
+    padding-top: 1px;
+    border-radius: 24px;
+    color: #fff;
+    background: #ff3a4a;
+    font-size: 18px;
+    text-align: center;
+}
+
+.group_link .link_box .link_img {
+    width: 120px;
+    height: 120px;
+    margin: 10px auto 0;
+}
+
+.group_link .link_txt {
+    font-size: 18px;
+    color: #707070;
+}
+
+.link_area .link_num.on,
+.link_area .link_num:hover {
+    color: #fff;
+    background: #ff3a4a;
+}
+
+/* pass 인증 선택 sms 인증선택 */
+.content_head h2 {
+    display: none;
+}
+
+.content_head h2.on {
+    display: block;
+}
+
+.certWay_content {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.certWay_content .step_item {
+    margin-top: 14px;
+    display: none;
+}
+
+.certWay_content .step_item.on {
+    display: block;
+}
+
+.certWay_content .step_box {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    transition: .3s;
+}
+
+.certWay_content .step_box.on {
+    display: block;
+}
+
+.certWay_content .step_box input {
+    position: absolute;
+    width: 100%;
+    height: inherit;
+    line-height: 65px;
+    padding: 0 20px;
+    border: 1px solid #D4D4D4;
+    border-radius: 12px;
+    font-size: 24px;
+    transition: .3s;
+}
+
+.certWay_content .step_box input::placeholder {
+    color: #808080;
+    font-size: 22px;
+}
+
+.certWay_content .btn_pass {
+    margin-top: 20px;
+}
+
+/* 인증 정보 입력 */
+.group_smsway {
+    margin-top: 40px;
+}
+
+.group_smsway .step_item.on:nth-child(2) {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.group_smsway .step_box.birth1 {
+    width: 194px;
+}
+
+.group_smsway .step_box.birth2 {
+    width: 58px;
+}
+
+.group_smsway .step_box.birth2 input {
+    padding: 0;
+    text-align: center;
+}
+
+.group_smsway .step_item .dash {
+    display: inline-block;
+    width: 12px;
+    height: 1px;
+    background: #707070;
+}
+
+.group_smsway .digit_box {
+    display: flex;
+    gap: 8px;
+}
+
+.group_smsway .digit_box i {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    background: #808080;
+}
+
+.group_smsway .simpleCaptcha {
+    background: #f8f8f8;
+    border-radius: 12px;
+}
+
+.group_smsway .simpleCaptchaDiv {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 0 18px 20px;
+}
+
+.group_smsway .simpleCaptchaBtn button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 78px;
+    height: 50px;
+}
+
+.group_smsway .simpleCaptchaBtn button:nth-child(2)::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: '';
+    clear: both;
+    width: 1px;
+    height: 46px;
+    background: #d4d4d4;
+}
+
+.group_smsway .capchaInput {
+    margin-top: 14px;
+}
+
+.group_smsway .btn_box.type2 {
+    display: none;
+}
+
+.group_smsway .btn_box.type2.show {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 42px;
+}
+
+.group_smsway .btn_box.type2 .btn_pass {
+    position: inherit;
+    width: 202px;
+    height: 60px;
+    transform: inherit;
+}
+
+.group_smsway .btn_box.type2 .btn_pass:first-child {
+    background: #545454;
+}
+
+.group_smsway .btn_pass.show {
+    display: block;
+}
+
+/* 캡챠 */
+.simpleCaptchaBtn .btn_txt {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 63px;
+    height: 50px;
+}
+
+.simpleCaptchaBtn .btn_txt::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    content: '';
+    clear: both;
+    width: 63px;
+    height: 50px;
+    visibility: hidden;
+}
+
+.simpleCaptchaBtn .btn_txt.reload:before {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/capcha_reload_on.svg) no-repeat center;
+}
+
+.simpleCaptchaBtn .btn_txt.audio:before {
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/capcha_voice_on.svg) no-repeat center;
+}
+
+.simpleCaptchaBtn .btn_txt:hover::before {
+    visibility: visible;
+}
+
+.simpleCaptchaBtn .btn_txt:hover img {
+    visibility: hidden;
+}
+
+/* sms 인증번호 확인 */
+.group_smsway .time_box {
+    margin-top: 14px;
+}
+
+.group_popup .code_txt {
+    justify-content: center;
+}
+
+.code_area {
+    display: flex;
+    gap: 10px;
+}
+
+.code_area .step_box {
+    width: calc(100% - 130px);
+}
+
+.code_area .btn_box {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 65px;
+}
+
+.code_area .btn_box button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    line-height: 65px;
+    border-radius: 12px;
+    font-size: 20px;
+    color: #fff;
+    ;
+    background: #707070;
+}
+
+.code_area .btn_box .btn_code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.code_area .btn_box .btn_code .reload {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/icon_reload.svg) no-repeat center;
+}
+
+.code_area .btn_box .btn_check {
+    background: #ff3a4a;
+    visibility: hidden;
+}
+
+.code_area .btn_box .btn_check.on {
+    background: #ff3a4a;
+    visibility: visible;
+    display: block;
+}
+
+
+/* pass 앱 실행 */
+.toapp_content .btn_pass {
+    display: block;
+    margin-top: 40px;
+}
+
+.group_app {
+    margin-top: 40%;
+    text-align: center;
+}
+
+.touchEnKeyDirectInstall:hover {
+    text-decoration: underline;
+}
+
+/* custom scroll */
+.content_inner::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content_inner::-webkit-scrollbar-track,
+.content_inner.container::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+}
+
+.content_inner::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.content_inner::-webkit-scrollbar-thumb {
+    background-color: #d4d4d4;
+    border-radius: 5px;
+    height: 20px;
+}
+
+.content_inner::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* popup_wrap */
+.popup_wrap .btn_pass {
+    display: block;
+}
+
+.bgGray {
+    background: #545454;
+}
+
+/* 모바일 환경 조정 */
+@media screen and (max-width: 479px) {
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        font-size: 10px;
+    }
+
+    #container {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .btn_pass {
+        height: 5.5rem;
+        font-size: 2.2rem;
+    }
+
+    .pass_head {
+        padding: 3rem 2rem 0 2rem;
+    }
+
+    /* content */
+    .sc_content {
+        min-height: 550px;
+        height: auto;
+    }
+
+    .sc_content .inner {
+        padding: 10% 5%;
+        box-sizing: border-box;
+    }
+
+    .sc_content h2 {
+        font-size: 3rem;
+    }
+
+    .qr_content h2 {
+        font-size: 2.4rem;
+    }
+
+    .img_txt h3 {
+        font-size: 3rem;
+    }
+
+    .img_txt p {
+        font-size: 1.8rem;
+    }
+
+    /* 통신사선택 */
+    .tel_list {
+        margin-top: 30px;
+    }
+
+    .tel_item {
+        height: 11rem;
+        border: 1px solid #D4D4D4;
+        border-radius: 12px;
+    }
+
+    .tel_item.on {
+        border: 2px solid #FF3A4A;
+    }
+
+    .tel_item.save {
+        background: #f8f8f8;
+    }
+
+    .tel_item button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .tel_item button:focus {
+        border-radius: 12px;
+    }
+
+    .tel_item.save button {
+        font-size: 1.8rem;
+        color: #545454;
+    }
+
+    .sc_content .btn_check span {
+        font-size: 1.6rem;
+    }
+
+    .sc_content .btn_telCheck {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 20px;
+        float: right;
+    }
+
+    .sc_content .btn_telCheck i {
+        display: inline-block;
+    }
+
+    .sc_content .btn_telCheck span {
+        display: inline-block;
+        color: #707070;
+        font-size: 1.6rem;
+    }
+
+    .sc_content .btn_telCheck.on i {
+        width: 20px;
+        height: 20px;
+        background: url(https://nice.checkplus.co.kr/images/mobileCertV2/icon/icon_mark1_on.png) no-repeat center;
+    }
+
+    .sc_content .btn_telCheck.on i img {
+        opacity: 0;
+    }
+
+    .sc_content .btn_telCheck.on span {
+        color: #ff3a4a;
+    }
+
+    .cert_content .link_passApp {
+        margin: 40px auto 0;
+    }
+
+    #touchEnKeyBox {
+        padding: 1% 5% 0 0;
+        font-size: 1.2rem;
+        text-align: right;
+    }
+
+    #touchEnKeyBox a {
+        display: inline-block;
+        text-decoration: underline;
+        padding-top: 3px;
+        padding-left: 2px;
+        font-weight: 700;
+        font-size: 1.4rem;
+    }
+
+    /*  팝업 */
+    .popup_wrap {
+        height: 100%;
+    }
+
+    .popup_content {
+        position: relative;
+    }
+
+    .popup_content .inner {
+        padding: 10% 5%;
+    }
+
+    .group_popup {
+        height: 100%;
+    }
+
+    .group_popup .inner {
+        padding: 8% 4%;
+    }
+
+    .group_popup .popup_head {
+        display: flex;
+        align-items: center;
+    }
+
+    .group_popup .popup_head h3 {
+        width: 94%;
+        font-size: 2.2rem;
+    }
+
+    .group_popup .popup_head .btn_close {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    .group_popup .saveTel_list {
+        margin-top: 20px;
+        height: 4.8rem;
+    }
+
+    .group_popup .saveTel_item:nth-child(1) button {
+        left: 2%;
+    }
+
+    .group_popup .saveTel_item:nth-child(2) button {
+        left: 37%;
+    }
+
+    .group_popup .saveTel_item:nth-child(3) button {
+        right: 2%;
+    }
+
+    .group_popup .saveTel_item button {
+        position: absolute;
+        top: 0;
+        padding: 1.3rem 0.2rem 1rem;
+        font-size: 1.8rem;
+    }
+
+    .group_popup .saveTel_item button.on {
+        color: #ff3a4a;
+        border-color: #ff3a4a;
+    }
+
+    .group_popup .txt_box {
+        font-size: 1.8rem;
+    }
+
+    .group_popup .tab_txt {
+        display: none;
+        font-size: 1.8rem;
+        line-height: 3rem;
+    }
+
+    .group_popup .tab_txt.on {
+        display: block;
+    }
+
+    .group_popup .content_inner {
+        height: 54vh;
+    }
+
+    .group_popup .content_area {
+        top: 60px;
+    }
+
+    .group_saveTel .btn_pass {
+        top: 70%;
+    }
+
+    .group_saveTel .content_inner {
+        height: 50vh;
+    }
+
+    .group_popup.type2 .inner {
+        padding: 10% 6% 8% 6%;
+    }
+
+    .group_popup.type2 .btn_close {
+        width: 100%;
+        height: 5.5rem;
+        margin-top: 20px;
+        font-size: 2.2rem;
+    }
+
+    .group_popup.type2 .btn_pass {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .popup_agree_cont .content_area {
+        height: auto;
+    }
+
+    .popup_agree_item .agree_item {
+        height: 38px;
+        padding: 0.7rem 0;
+    }
+
+    .popup_agree_item .agree_item button {
+        height: 24px;
+    }
+
+    .popup_agree_item.type2 .popup_content {
+        margin-top: 0;
+    }
+
+    .appAlarm_content .btn_box {
+        margin-top: 50px;
+    }
+
+    .group_smsway .digit_box {
+        gap: .5rem;
+    }
+
+    .group_smsway .digit_box i {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+
+    .group_smsway .simpleCaptchaBtn button {
+        width: 7rem;
+    }
+
+    .simpleCaptchaBtn .btn_txt {
+        width: 5.8rem;
+    }
+
+    .simpleCaptchaBtn .btn_txt::before {
+        width: 5.8rem;
+    }
+
+    /* foooter */
+    #footer {
+        position: inherit;
+        bottom: 0;
+        width: 100%;
+        clear: both;
+    }
+
+    #footer p {
+        color: #666
+    }
+
+    #footer .certifyBox {
+        display: none;
+        width: 85px;
+    }
+
+    #footer .copyright {
+        display: flex;
+        justify-content: space-between;
+        background-color: #efefef;
+        box-sizing: border-box;
+        padding: 4%;
+    }
+
+    #footer .copyrightInner a {
+        display: inline-block;
+        color: #656565
+    }
+
+    #footer .copyrightInner span {
+        display: inline-block;
+        padding-right: 4px;
+        font-size: 1.3rem;
+    }
+
+    #footer .copyrightInner span.bold {
+        font-weight: 700;
+        color: #484848;
+        font-size: 1.4rem;
+    }
+
+    #footer .copyrightInner p {
+        margin-top: 5px;
+        font-size: 1.2rem;
+    }
+
+    #footer .footer_logo {
+        width: 7rem;
+    }
+
+    #layerAgreePop {
+        visibility: visible;
+    }
+
+    #layerAgreePop[hidden] {
+        visibility: hidden;
+    }
+
+    .logoBox {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+    }
+
+    .certWay_content .step_box input::placeholder {
+        font-size: 1.8rem;
+    }
+}

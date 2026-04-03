@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="euc-kr">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="ko-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>휴대폰 본인확인 - {{ isp_name }} - QR 인증</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" media="screen" />
+    <script src="{{ url_for('static', filename='js/common/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layerPopup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/style.js') }}"></script>
+
+    <script type="text/javascript">
+        let isPolling = false;
+        let timerInterval = null;
+        let remainingTime = 300;
+
+        $(function () {
+            startTimer();
+
+            const checkStatus = (isManual) => {
+                if (isPolling && !isManual) return;
+                isPolling = true;
+
+                $.ajax({
+                    url: "{{ url_for('qr_confirm_proc') }}",
+                    method: 'POST',
+                    success: (data) => {
+                        if (data.code === 'SUCCESS') {
+                            location.href = data.move_page;
+                        } else if (data.code === 'RETRY') {
+                            isPolling = false;
+                        } else {
+                            location.href = "{{ url_for('error') }}";
+                        }
+                    },
+                    error: () => {
+                        isPolling = false;
+                    }
+                });
+            };
+
+            $('#btnSubmit').on('click', () => checkStatus(true));
+            setInterval(() => checkStatus(false), 1000);
+
+            $('#resetTimer').on('click', function () {
+                $.ajax({
+                    url: "{{ url_for('qr_extend') }}",
+                    method: 'POST',
+                    success: (data) => {
+                        if (data.code === 'SUCCESS') {
+                            $('#qrImage').attr('src', 'data:image/png;base64,' + data
+                                .qr_image_base64);
+                            $('#qrNum').text(data.qr_num);
+
+                            remainingTime = 300;
+                            startTimer();
+
+                            showMessage('시간이 연장되었습니다.');
+                        } else {
+                            showMessage(data.message || '시간 연장에 실패했습니다.');
+                        }
+                    },
+                    error: () => {
+                        showMessage('시간 연장에 실패했습니다.');
+                    }
+                });
+            });
+        });
+
+        function startTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+
+            timerInterval = setInterval(() => {
+                remainingTime--;
+
+                if (remainingTime <= 0) {
+                    clearInterval(timerInterval);
+                    $('#timer').text('0:00');
+                    showMessage('인증 시간이 만료되었습니다. 시간 연장 버튼을 눌러주세요.');
+                    return;
+                }
+
+                const minutes = Math.floor(remainingTime / 60);
+                const seconds = remainingTime % 60;
+                $('#timer').text(minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
+            }, 1000);
+        }
+
+        function showMessage(message) {
+            $('#messageLayer .popup_head h3').text('알림');
+            $('#messageLayer .code_txt').text(message);
+            $('#messageLayer').addClass('on');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="" id="container">
+        <header id="header" class="pass_head">
+            <h1 class="logo">
+                <img src="https://nice.checkplus.co.kr/images/mobileCertV2/logo_pass.svg?ver=1767676388823" alt="PASS">
+            </h1>
+            <em>인증을 넘어<br>일상으로 PASS</em>
+        </header>
+
+        <section class="sc_content qr_content">
+            <div class="inner">
+                <h2>PASS앱 실행 후, 상단의 QR인증에서<br><strong class="font_red">QR코드 스캔</strong> 또는 <strong class="font_red">인증번호
+                        입력</strong>을
+                    선택해주세요</h2>
+                <div class="group_qr">
+                    <div class="qr_box">
+                        <img id="qrImage" src="data:image/png;base64,{{ qr_image_base64 }}" alt="큐알코드">
+                        <div class="or">또는</div>
+                        <div id="qrNum" class="qr_num">{{ qr_num }}</div>
+                    </div>
+                    <div class="time_box">
+                        <span class="fx1">
+                            <i class="clock" aria-hidden="true"></i>
+                            <span class="count_txt">남은시간</span>
+                            <span id="timer" class="count">5:00</span>
+                        </span>
+                        <button type="button" id="resetTimer" class="btn_delay">시간연장</button>
+                    </div>
+                    <div class="qr_txt">자동으로 인증 처리가 안될 경우<br>아래의 <b>'인증 완료'</b> 버튼을 눌러주세요</div>
+                </div>
+                <button type="button" id="btnSubmit" class="btn_pass">인증 완료</button>
+            </div>
+        </section>
+
+        <div id="messageLayer" class="popup_wrap">
+            <div class="dim"></div>
+            <div class="group_popup type2">
+                <div class="inner">
+                    <div class="popup_head">
+                        <h3></h3>
+                    </div>
+                    <div class="popup_content">
+                        <p class="code_txt"></p>
+                    </div>
+                    <button type="button" class="btn_close btnLayerClose">확인</button>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer" class="nice_footer">
+            <div class="copyright">
+                <div class="copyrightInner">
+                    <a href="https://github.com/Imp1ex/Pass-Reverse/blob/main/NICE.md" target="_blank" class="footerAgreePop"
+                        title="새창 열림"><span class="bold partition">NICE평가정보 공식 항목들</span></a>
+                    <a href="https://github.com/Imp1ex/Pass-Reverse" target="_blank" class="footerAgreePop"
+                        title="새창 열림"><span class="partition">오픈소스</span></a>
+                    <p>해당 페이지는 공식 PASS 인증 페이지가 아닙니다</p>
+                </div>
+                <div class="logoBox">
+                    <div class="footer_logo">
+                        <img src="https://nice.checkplus.co.kr/images/cert/copyright_small.gif" alt="NICE평가정보">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>

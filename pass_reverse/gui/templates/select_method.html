@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="euc-kr">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="ko-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <title>휴대폰 본인확인 - {{ isp_name }} - 인증방법 선택</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" media="screen" />
+    <script src="{{ url_for('static', filename='js/common/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layerPopup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/style.js') }}"></script>
+    <script>
+        var PASS_URLS = {
+            push: '{{ url_for("push") }}',
+            sms: '{{ url_for("sms") }}',
+            qr: '{{ url_for("qr") }}',
+            error: '{{ url_for("error") }}'
+        };
+    </script>
+</head>
+
+<body>
+    <div class="" id="container">
+        <header id="header" class="pass_head">
+            <h1 class="logo">
+                <img src="https://nice.checkplus.co.kr/images/mobileCertV2/logo_pass.svg?ver=1767676388823" alt="PASS">
+            </h1>
+            <em>인증을 넘어<br>일상으로 PASS</em>
+        </header>
+        <form name="frm" id="frm" method="post" action="/x" autocomplete="off">
+            <input type="hidden" name="selectMobileCo" id="selectMobileCo" value="{{ isp_name }}">
+            <input type="hidden" name="ispCode" id="ispCode" value="{{ session.get('isp_code', '') }}">
+            <input type="hidden" name="certMethod" id="certMethod" value="">
+            <section class="sc_content cert_content">
+                <div class="inner">
+                    <h2><strong>인증방법</strong>을<br>선택해주세요</h2>
+                    <ul class="cert_list">
+                        <li aria-label="pass 인증" class="cert_item">
+                            <button type="button" class="mobileCertMethodCheck" value="APP_PUSH" title="">
+                                <span class="item_tit">
+                                    <strong>PASS 인증</strong>
+                                    <span>앱으로 간편하고 안전하게!</span>
+                                </span>
+                                <i class="ico ico_pass" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                        <li aria-label="QR코드 인증" class="cert_item">
+                            <button type="button" class="mobileCertMethodCheck" value="APP_QR" title="">
+                                <span class="item_tit">
+                                    <strong>QR코드 인증</strong>
+                                    <span>QR코드 스캔으로 간편하게!</span>
+                                </span>
+
+                                <i class="ico ico_qr" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                        <li aria-label="문자(SMS) 인증" class="cert_item">
+                            <button type="button" class="mobileCertMethodCheck" value="SMS" title="">
+                                <span class="item_tit">
+                                    <strong>문자(SMS) 인증</strong>
+                                    <span>SMS 인증번호로 본인확인</span>
+                                </span>
+                                <i class="ico ico_sms" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="group_bottom">
+                        <div class="checkbox">
+                            <input type="checkbox" name="mobileCertAgree" id="mobileCertAgree" value="Y">
+                            <label for="mobileCertAgree" class="check_txt">본인확인 이용 동의<span
+                                    class="font_red">(필수)</span></label>
+                        </div>
+                        <button type="button" class="btn_agree" id="btnAgreeItemLayerOpen" title="약관상세보기">
+                            <i class="agree_arr" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <button type="button" id="btnMobileCertStart" class="btn_pass">다음</button>
+                </div>
+            </section>
+        </form>
+        <div id="agreeItemLayer" class="popup_wrap popup_agree_item">
+            <div class="dim" aria-hidden="true"></div>
+            <div class="group_popup group_agree type2">
+                <div class="inner">
+                    <div class="popup_content">
+                        <ul class="agree_list">
+                            <li class="agree_item">
+                                <button type="button" class="btnAgreeCont" id="LGU100" title="약관상세보기">개인정보 이용 동의 <i
+                                        class="agree_arr" aria-hidden="true"></i></button>
+                            </li>
+                            <li class="agree_item">
+                                <button type="button" class="btnAgreeCont" id="LGU110" title="약관상세보기">고유 식별정보 처리 동의 <i
+                                        class="agree_arr" aria-hidden="true"></i></button>
+                            </li>
+                            <li class="agree_item">
+                                <button type="button" class="btnAgreeCont" id="HP100" title="약관상세보기">서비스 이용약관 동의 <i
+                                        class="agree_arr" aria-hidden="true"></i></button>
+                            </li>
+                            <li class="agree_item">
+                                <button type="button" class="btnAgreeCont" id="LGU120" title="약관상세보기">통신사 이용약관 동의 <i
+                                        class="agree_arr" aria-hidden="true"></i></button>
+                            </li>
+                            <li class="agree_item">
+                                <button type="button" class="btnAgreeCont" id="LGU130" title="약관상세보기">제 3자 정보제공 동의 <i
+                                        class="agree_arr" aria-hidden="true"></i></button>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <button type="button" id="btn_certPopup1" class="btn_close btnLayerClose">닫기</button>
+                </div>
+            </div>
+        </div>
+        <div id="agreeContLayer" class="popup_wrap popup_agree_cont">
+            <div class="group_popup certAgree_popup">
+                <div class="inner">
+                    <div class="popup_head">
+                        <button type="button" class="btn_close btnLayerClose"><img
+                                src="https://nice.checkplus.co.kr/images/mobileCertV2/btn/btn_pclose.svg"
+                                alt="닫기 버튼"></button>
+                        <h3>약관 제목</h3>
+                    </div>
+                    <div class="content_area">
+                        <div class="content_inner" aria-labelledby="agreeContLayerTxtBox">
+                            <div id="agreeContLayerTxtBox" class="txt_box">
+                                약관 내용
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="btn_certPopup2" class="btn_pass btn_check btnLayerClose">확인</button>
+                </div>
+            </div>
+        </div>
+        <div id="messageLayer" class="popup_wrap">
+            <div class="dim"></div>
+            <div class="group_popup type2">
+                <div class="inner">
+                    <div class="popup_head">
+                        <h3></h3>
+                    </div>
+                    <div class="popup_content">
+                        <p class="code_txt"></p>
+                    </div>
+                    <button type="button" class="btn_close btnLayerClose">확인</button>
+                </div>
+            </div>
+        </div>
+        <footer id="footer" class="nice_footer">
+            <div class="copyright">
+                <div class="copyrightInner">
+                    <a href="https://github.com/Imp1ex/Pass-Reverse/blob/main/NICE.md" target="_blank"
+                        class="footerAgreePop" title="새창 열림"><span class="bold partition">NICE평가정보 공식 항목들</span></a>
+                    <a href="https://github.com/Imp1ex/Pass-Reverse" target="_blank" class="footerAgreePop"
+                        title="새창 열림"><span class="partition">오픈소스</span></a>
+                    <p>해당 페이지는 공식 PASS 인증 페이지가 아닙니다</p>
+                </div>
+                <div class="logoBox">
+                    <div class="footer_logo">
+                        <img src="https://nice.checkplus.co.kr/images/cert/copyright_small.gif" alt="NICE평가정보">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

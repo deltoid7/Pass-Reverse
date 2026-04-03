@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="euc-kr">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="ko-KR">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <title>휴대폰 본인확인 - 인증 실패 안내</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" media="screen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" media="screen" />
+    <script src="{{ url_for('static', filename='js/common/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/layerPopup.js') }}"></script>
+</head>
+
+<body>
+    <div class="" id="container">
+        <header id="header" class="pass_head">
+            <h1 class="logo">
+                <img src="https://nice.checkplus.co.kr/images/mobileCertV2/logo_pass.svg?ver=1767676388823" alt="PASS">
+            </h1>
+            <em>인증을 넘어<br>일상으로 PASS</em>
+        </header>
+        <section class="sc_content appAlarm_content">
+            <div class="inner notice2">
+                <i aria-hidden="true" class="img_notice"></i>
+                <div class="img_txt">
+                    <h3 class=""><b class="font_red">인증실패!</b><br><b class="font_bk">본인확인에 실패</b>하였습니다</h3>
+                    <p class="">잠시 후 다시 시도해 주세요</p>
+                </div>
+                <div class="btn_box">
+                    <button type="button" id="btnMobileCertMain" class="btn_pass" onclick="window.location.href='/select_isp'">재시도</button>
+                </div>
+            </div>
+        </section>
+        <div id="messageLayer" class="popup_wrap">
+            <div class="dim"></div>
+            <div class="group_popup type2">
+                <div class="inner">
+                    <div class="popup_head">
+                        <h3></h3>
+                    </div>
+                    <div class="popup_content">
+                        <p class="code_txt"></p>
+                    </div>
+                    <button type="button" class="btn_close btnLayerClose">확인</button>
+                </div>
+            </div>
+        </div>
+        <footer id="footer" class="nice_footer">
+            <div class="copyright">
+                <div class="copyrightInner">
+                    <a href="https://github.com/Imp1ex/Pass-Reverse/blob/main/NICE.md" target="_blank" class="footerAgreePop" title="새창 열림"><span class="bold partition">NICE평가정보 공식 항목들</span></a>
+                    <a href="https://github.com/Imp1ex/Pass-Reverse" target="_blank" class="footerAgreePop" title="새창 열림"><span class="partition">오픈소스</span></a>
+                    <p>해당 페이지는 공식 PASS 인증 페이지가 아닙니다</p>
+                </div>
+                <div class="logoBox">
+                    <div class="footer_logo">
+                        <img src="https://nice.checkplus.co.kr/images/cert/copyright_small.gif" alt="NICE평가정보">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,449 @@
+@charset "euc-kr";
+
+#container {
+    position: relative;
+    width: 480px;
+    min-height: 800px;
+    margin: 0 auto;
+    background: #fff;
+    overflow: hidden;
+}
+
+.h830 {
+    height: 830px;
+}
+
+/* header */
+.pass_head {
+    display: flex;
+    justify-content: space-between;
+    height: 68px;
+    padding: 30px 32px 0px 32px;
+}
+
+.pass_head .logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.pass_head img {
+    vertical-align: bottom;
+}
+
+.pass_head em {
+    color: #545454;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.09px;
+    text-align: right;
+}
+
+/* content */
+.sc_content {
+    min-height: 586px;
+}
+
+.sc_content .inner {
+    padding: 50px 32px 40px 32px;
+    box-sizing: border-box;
+}
+
+/* 팝업 */
+.popup_wrap {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+.popup_wrap.on {
+    display: block;
+}
+
+.group_popup {
+    position: relative;
+    height: 800px;
+    background: #fff;
+}
+
+.group_popup .inner {
+    height: 100%;
+    padding: 40px 30px 30px;
+}
+
+.group_popup .popup_head {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.group_popup .popup_head h3 {
+    width: 94%;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.group_popup .popup_head .btn_close {
+    width: 24px;
+    height: 24px;
+}
+
+.group_popup .saveTel_list {
+    position: relative;
+    margin-top: 40px;
+    height: 55px;
+}
+
+.group_popup .saveTel_list::after {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #d4d4d4;
+    content: '';
+    clear: both;
+}
+
+.group_popup .saveTel_item {
+    height: 100%;
+}
+
+.group_popup .saveTel_item button {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding: 15px 4px 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #545454;
+    border-bottom: 3px solid #fff;
+    transition: .1s;
+}
+
+.group_popup .saveTel_item:nth-child(1) button {
+    left: 2%;
+}
+
+.group_popup .saveTel_item:nth-child(2) button {
+    left: 37%;
+}
+
+.group_popup .saveTel_item:nth-child(3) button {
+    right: 2%;
+}
+
+.group_popup .saveTel_item button.on {
+    color: #ff3a4a;
+    border-color: #ff3a4a;
+}
+
+.group_popup .content_area {
+    position: absolute;
+    top: 80px;
+    left: 0;
+}
+
+.group_popup .content_inner {
+    height: 56vh;
+    overflow-y: scroll;
+    overflow-anchor: auto;
+}
+
+/* 250318 수정 */
+.group_popup .tab_txt {
+    display: none;
+    height: 100%;
+    padding: 0px 15px;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #707070;
+    background: #fff;
+}
+
+.group_popup .tab_txt.on {
+    display: block;
+}
+
+.group_popup .btn_pass {
+    margin-top: 40px;
+}
+
+.group_popup .txt_box {
+    height: inherit;
+}
+
+.group_popup.type2 {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 380px;
+    max-width: calc(100vw - 60px);
+    height: auto !important;
+    z-index: 10;
+    border-radius: 12px;
+    transform: translate(-50%, -50%) !important;
+    background: #fff;
+}
+
+.group_popup.type2 .popup_content p {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #767676;
+}
+
+.group_popup.type2 .popup_content .dot::before {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: #767676;
+    border-radius: 10px;
+    content: '';
+    margin-bottom: 4px;
+}
+
+.group_popup.type2 .alarm_txt {
+    display: inline-block;
+}
+
+.group_popup.type2 .btn_close {
+    width: 100%;
+    height: 55px;
+    margin-top: 20px;
+    border-radius: 12px;
+    font-size: 24px;
+    color: #fff;
+    background: #ff3a4a;
+    font-weight: 700;
+}
+
+.certAgree_popup {
+    height: 770px;
+}
+
+.certAgree_popup .content_inner {
+    line-height: 1.3;
+    height: 100%;
+}
+
+.certAgree_popup h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.certAgree_popup strong {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.certAgree_popup p {
+    margin-top: 12px;
+    font-size: 18px;
+    color: #767676;
+}
+
+.group_agree .popup_head {
+    padding: 10px;
+    border-radius: 12px;
+    background: #f8f8f8;
+}
+
+.group_agree .popup_head .checkbox {
+    width: 100%;
+}
+
+.group_agree .agree_item {
+    padding: 10px 0;
+}
+
+.group_agree .agree_item .btn_agree {
+    color: #707070;
+}
+
+.group_saveTel .btn_pass {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    width: 87%;
+    transform: translateX(-50%);
+}
+
+.popup_content .agree_item .checkbox {
+    width: 100%;
+}
+
+.popup_agree_item.type2 .popup_content {
+    margin-top: 0;
+}
+
+.popup_agree_item .agree_item button {
+    width: 100%;
+    padding-left: 4px;
+    font-size: 20px;
+    color: #707070;
+    text-align-last: left;
+}
+
+.popup_agree_cont .content_area .content_inner {
+    font-size: 16px;
+}
+
+.popup_agree_cont .content_area {
+    position: inherit;
+    height: 77%;
+    overflow-y: auto;
+    margin-top: 30px;
+}
+
+.appDown .inner {
+    padding: 40px 30px 25px;
+}
+
+.appDown .popup_head h3 {
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.appDown .btn_box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.appDown .btn_box button {
+    position: inherit;
+    width: 100%;
+    height: 55px;
+    font-size: 21px;
+    border-radius: 8px;
+}
+
+.appDown .btn_box .btn_close {
+    font-size: 21px;
+    background: #707070;
+    border-radius: 8px;
+}
+
+.appDown .popup_head h3 .sub {
+    display: block;
+    font-size: 20px;
+    margin-top: 8px;
+    color: #3b3b3b;
+    font-weight: 500;
+}
+
+/* footer banner */
+.footerBanner {
+    max-width: 490px;
+    width: 100%;
+    max-height: 80px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footerBanner a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    outline-offset: -2px;
+}
+
+.footerBanner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footerBanner a:focus {
+    outline: 2px solid #ff3a4a;
+}
+
+/* foooter */
+#footer {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    clear: both;
+}
+
+#footer p {
+    color: #666
+}
+
+#footer .copyright {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 10px;
+    background-color: #efefef;
+}
+
+#footer .certifyBox {
+    width: 85px;
+}
+
+#footer .footer_logo {
+    width: 85px;
+}
+
+#footer .copyrightInner a {
+    display: inline-block;
+    color: #656565
+}
+
+#footer .copyrightInner span {
+    display: inline-block;
+    padding-right: 4px;
+    font-size: 14px;
+}
+
+#footer .copyrightInner span.bold {
+    font-weight: 700;
+    color: #484848;
+    font-size: 15px;
+}
+
+#footer .copyrightInner p {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+#layerAgreePop {
+    visibility: visible;
+}
+
+#layerAgreePop[hidden] {
+    visibility: hidden;
+}
+
+.logoBox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    float: right;
+}
+
+#touchEnKeyBox {
+    padding: 10px 30px 0 20px;
+    text-align: right;
+    font-size: 15px;
+}
+
+#touchEnKeyBox a {
+    display: inline-block;
+    font-weight: 700;
+}
+
+#agreeItemLayer .group_popup.type2 .popup_content {
+    margin-top: 0px;
+}
