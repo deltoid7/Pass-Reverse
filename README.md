@@ -1,4 +1,11 @@
+
 <img width="160" height=auto alt="pass-reverse" src="https://raw.githubusercontent.com/deltoid7/Pass-Reverse/refs/heads/main/src/pass-reverse-logo.png" />
+
+> [!NOTE]
+> 원래 이 프로젝트는 약 3개월 전에 처음 공개하였으나,<br>
+> 이후 2026년 4월 3일에 변경된 인증 흐름을 적용하는 과정에서 잘못된 merge가 발생하여, 커밋 히스토리를 초기화하게 되었습니다.
+> 
+> 혼란을 드려 죄송합니다.
 
 # Pass-Reverse
 PASS(NICE 평가정보) 휴대폰 본인 인증 api를 역공학한 라이브러리입니다. (모든 인증 방식 구현, GUI 구현, 캡차 해결 모델 구현)
